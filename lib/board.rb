@@ -16,9 +16,7 @@ class Board
     end
   end
 
-  def square_at(row, col)
-    @squares["#{row}_#{col}"] ||= Square.new(row, col, board[row][col])
-  end
+
 
   def adjacent_squares(row, col)
     @adjacent_squares["#{row}_#{col}"] ||= adj_squares(row, col)
@@ -39,6 +37,11 @@ class Board
     puts out
   end
 
+  def contains?(row,col)
+    @squares.key?("#{row}_#{col}")
+  end
+
+  private
   def adj_squares(row, col)
     adj_sq = []
     if row > 0
@@ -57,15 +60,10 @@ class Board
     end
     adj_sq
   end
-
-  def contains?(row,col)
-  	@squares_cache.key?("#{row}_#{col}")
+  
+  def square_at(row, col)
+    @squares["#{row}_#{col}"] ||= Square.new(row, col, board[row][col])
   end
-
-  def row_col_key(row, col)
-    "#{row}_#{col}"
-  end
-
 
 end
 
