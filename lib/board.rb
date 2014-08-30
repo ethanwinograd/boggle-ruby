@@ -2,16 +2,18 @@ require 'lib/square.rb'
 
 class Board
 
-  attr_accessor :squares, :board_size
+  attr_accessor :squares, :board_size, :characters
 
   def initialize(board)
     @board_size = board.size
     @squares = {}
     @adjacent_squares = {}
+    @characters = []
     for row in 0...@board_size
       for col in 0...@board_size
       	char = board[row][col]
         @squares["#{row}_#{col}"] = Square.new(row, col, char)
+        @characters << char
       end
     end
   end
